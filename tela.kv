@@ -1,0 +1,175 @@
+GerenciarLogin:
+    JanelaPrincipal:
+    CadastroEmail:
+    CadastroTelefone:
+    Login:
+    GerenciarLogado:
+        name: 'logado'
+    
+
+<JanelaPrincipal>:
+    name: "janelaprincipal"
+    FloatLayout: 
+        Image:
+            source: 'logo_inicio.jpeg'
+            allow_stretch: True
+            size_hint: 0.4, 0.4
+            pos_hint: {'center_x': .5, 'center_y': .75}
+
+        MDLabel:
+            text: "Faça seu login"
+            font_size: 30
+            halign: "center"
+            theme_text_color: "Custom"
+            text_color: 'black'
+
+        MDLabel:
+            text: "Continue"
+            font_size: 15
+            theme_text_color: "Custom"
+            text_color: 'black'  
+            pos_hint: {'center_x': 0.96, 'center_y': .45}  
+
+        MDFillRoundFlatIconButton:
+            icon: "email"
+            text: "continue com o email "
+            theme_text_color: "Custom"
+            text_color: "white"
+            theme_icon_color: "Custom"
+            icon_color: "white"
+            size_hint: 0.2, 0.07
+            pos_hint: {'center_x': .5, 'center_y': .3}
+            on_release:
+                app.root.current = 'cadastroemail'
+                root.manager.transition.direction = 'left'
+        MDFillRoundFlatIconButton:
+            icon: "phone"
+            text: "continue com o numero"
+            theme_text_color: "Custom"
+            text_color: "white"
+            theme_icon_color: "Custom"
+            icon_color: "white"
+            size_hint: 0.2, 0.07
+            pos_hint: {'center_x': .5, 'center_y': .2}
+            on_release:
+                app.root.current = 'cadastrotelefone'
+                root.manager.transition.direction = 'left'
+        MDTextButton:
+            text: "Clique aqui"
+            custom_color: "blue"
+            pos_hint: {'center_x': .5, 'center_y': .1}
+            on_release:
+                app.root.current = 'login'
+                root.manager.transition.direction = 'left'
+
+<CadastroEmail>:
+    name: "cadastroemail"
+    FloatLayout:
+        MDTextField:
+            id: nome
+            hint_text: "Nome"
+            mode: "fill"
+            pos_hint: {'center_x': .47, 'center_y': .65}
+            size_hint_x: .9
+        MDTextField:
+            id: email
+            hint_text: "Email"
+            mode: "fill"
+            pos_hint: {'center_x': .47, 'center_y': .55}
+            size_hint_x: .9
+        MDTextField:
+            id: cpf
+            hint_text: "CPF"
+            mode: "fill"
+            pos_hint: {'center_x': .47, 'center_y': .45}
+            size_hint_x: .9
+        MDTextField:
+            id: endereço
+            hint_text: "Endereço"
+            mode: "fill"
+            pos_hint: {'center_x': .47, 'center_y': .35}
+            size_hint_x: .9
+        MDTextField:
+            id: senha
+            hint_text: "Senha"
+            mode: "fill"
+            pos_hint: {'center_x': .47, 'center_y': .25}
+            size_hint_x: .9
+        MDRaisedButton:
+            text: "     CRIAR CONTA     "
+            md_bg_color: "blue"
+            pos_hint: {'center_x': .5, 'center_y': .12}
+
+<CadastroTelefone>:
+    name: "cadastrotelefone"
+    FloatLayout:
+        MDTextField:
+            id: nome
+            hint_text: "Nome"
+            mode: "fill"
+            pos_hint: {'center_x': .47, 'center_y': .65}
+            size_hint_x: .9
+        MDTextField:
+            id: telefone
+            hint_text: "Número"
+            mode: "fill"
+            pos_hint: {'center_x': .47, 'center_y': .55}
+            size_hint_x: .9
+        MDTextField:
+            id: cpf
+            hint_text: "CPF"
+            mode: "fill"
+            pos_hint: {'center_x': .47, 'center_y': .45}
+            size_hint_x: .9
+        MDTextField:
+            id: endereço
+            hint_text: "Endereço"
+            mode: "fill"
+            pos_hint: {'center_x': .47, 'center_y': .35}
+            size_hint_x: .9
+        MDTextField:
+            id: senha
+            hint_text: "Senha"
+            mode: "fill"
+            pos_hint: {'center_x': .47, 'center_y': .25}
+            size_hint_x: .9
+        MDRaisedButton:
+            text: "     CRIAR CONTA     "
+            md_bg_color: "blue"
+            pos_hint: {'center_x': .5, 'center_y': .12}
+            on_press: root.adicionar()
+
+<Login>:
+    name: "login"
+    FloatLayout:
+        MDTextField:
+            id: usuario
+            hint_text: "Usuario"
+            mode: "fill"
+            pos_hint: {'center_x': .47, 'center_y': .65}
+            size_hint_x: .9
+        MDTextField:
+            id: senha
+            hint_text: "Senha"
+            mode: "fill"
+            pos_hint: {'center_x': .47, 'center_y': .55}
+            size_hint_x: .9
+            password: True
+            icon_left: "key-variant"
+        MDIconButton:
+            icon: "eye-off"
+            pos_hint: {"center_y": .55}
+            pos: senha.width - self.width + dp(8), 0
+            theme_text_color: "Hint"
+            on_release:
+                self.icon = "eye" if self.icon == "eye-off" else "eye-off"
+                senha.password = False if senha.password is True else True
+        MDRaisedButton:
+            text: "     ENTRAR     "
+            md_bg_color: "blue"
+            pos_hint: {'center_x': .5, 'center_y': .12}
+            on_press: root.entrar()
+
+
+#maximo de caractereres
+# max_text_length: 5
